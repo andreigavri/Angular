@@ -1,0 +1,35 @@
+<mat-card class="card-container">
+  <mat-card-content>
+    <div class="input-container">
+      <mat-form-field class="input-field">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Ghost" [formControl]="title" required>
+        <mat-error *ngIf="title.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="input-container">
+      <mat-form-field class="input-field">
+        <mat-label>Description</mat-label>
+        <input matInput placeholder="Horror movie" [formControl]="description" required>
+        <mat-error *ngIf="description.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="input-container">
+      <mat-form-field class="input-field">
+        <mat-label>Year</mat-label>
+        <input matInput type="text" placeholder="2000" [formControl]='year'>
+        <mat-error *ngIf="year.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="input-container">
+      <mat-form-field class="input-field">
+        <mat-label>Director</mat-label>
+        <input matInput type="text" placeholder="Mark Steven Johnson" [formControl]='director'>
+        <mat-error *ngIf="director.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="div-buttons-container">
+      <button mat-raised-button color="primary">Save</button>
+    </div>
+  </mat-card-content>
+</mat-card>

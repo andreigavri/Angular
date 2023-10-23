@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({
@@ -8,11 +8,11 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class AuthComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
+  username = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
+  reTypePassword = new FormControl('', [Validators.required]);
   hide = true;
-
-  authType: string = 'log in';
-
+  authType = "login"
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
@@ -20,12 +20,11 @@ export class AuthComponent {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
-
   onChangeAuthType(): void {
-    if (this.authType == 'log in') {
+    if (this.authType == 'login') {
       this.authType = 'register';
     } else {
-      this.authType = 'log in';
+      this.authType = 'login';
     }
   }
 }
