@@ -1,0 +1,11 @@
+.movie-card {
+  width: 300px;
+  margin: 14px;
+}
+
+.span-title{
+  font-size: 20px;
+  color: red;
+  font-weight: bold;
+
+}
