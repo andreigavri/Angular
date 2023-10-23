@@ -11,13 +11,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { AddEditMovieComponent } from './dashboard/add-edit-movie/add-edit-movie.component';
+import { MovieListComponent } from './dashboard/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     DashboardComponent,
-    AddEditMovieComponent
+    AddEditMovieComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,

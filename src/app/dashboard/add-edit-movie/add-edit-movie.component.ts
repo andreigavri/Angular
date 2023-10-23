@@ -15,4 +15,7 @@ export class AddEditMovieComponent {
   getErrorMessage() {
     return "error found"
   }
+  onSave(){
+    console.log("Save");
+  }
 }
