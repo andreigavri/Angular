@@ -14,7 +14,8 @@ export class AuthService {
       email: email,
       password: password
     };
-    this.httpClient.post("https://api.codebyte-software.com:2323/api/auth/login", body);
+    return this.httpClient.post("https://api.codebyte-software.com:2323/api/auth/login", body);
+
   }
 
   public register(email: string, username: string, password: string, reTypePassword: string) {

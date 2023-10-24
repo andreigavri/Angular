@@ -36,12 +36,30 @@ export class AuthComponent {
   }
 
   onLogin() {
-    let emailTxt = this.email.getRawValue();
-    let passwordTxt = this.password.getRawValue();
+    let emailTxt = this.email.getRawValue()!;
+    let passwordTxt = this.password.getRawValue()!;
     console.log(emailTxt, passwordTxt);
+    this.authService.login(emailTxt, passwordTxt).subscribe((response: any) => {
+      console.log(response);
+      alert("Success")
+    }, (error) => {
+      alert("There is a new error");
+      console.log(error)
+    });
   }
 
   onRegister() {
+    let emailTxt = this.email.getRawValue()!;
+    let usernameTxt = this.username.getRawValue()!;
+    let passwordTxt = this.password.getRawValue()!;
+    let reTypePasswordTxt = this.reTypePassword.getRawValue()!;
+    this.authService.register(emailTxt, usernameTxt, passwordTxt, reTypePasswordTxt).subscribe((response: any) => {
+      console.log(response);
+      alert("Successfully Registered")
+    }, (error) => {
+      alert("There is a new error");
+      console.log((error))
+    });
+    console.log(emailTxt, usernameTxt, passwordTxt, reTypePasswordTxt);
   }
 }
-
