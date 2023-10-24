@@ -12,10 +12,19 @@ export class AuthService {
   public login(email: string, password: string) {
     let body = {
       email: email,
+      password: password
+    };
+    this.httpClient.post("https://api.codebyte-software.com:2323/api/auth/login", body);
+  }
+
+  public register(email: string, username: string, password: string, reTypePassword: string) {
+    let body = {
+      email: email,
+      username: username,
       password: password,
-    }
-    this.httpClient.post("https://api.codebyte-software.com:2323/api/auth/login",body)
+      reTypePassword: reTypePassword
+    };
+    return this.httpClient.post("https://api.codebyte-software.com:2323/api/auth/register", body);
 
   }
 }
-

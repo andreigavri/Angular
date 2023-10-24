@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-auth',
@@ -13,6 +14,11 @@ export class AuthComponent {
   reTypePassword = new FormControl('', [Validators.required]);
   hide = true;
   authType = "login"
+
+  constructor(private authService: AuthService) {
+
+  }
+
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
@@ -20,6 +26,7 @@ export class AuthComponent {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
+
   onChangeAuthType(): void {
     if (this.authType == 'login') {
       this.authType = 'register';
@@ -27,4 +34,14 @@ export class AuthComponent {
       this.authType = 'login';
     }
   }
+
+  onLogin() {
+    let emailTxt = this.email.getRawValue();
+    let passwordTxt = this.password.getRawValue();
+    console.log(emailTxt, passwordTxt);
+  }
+
+  onRegister() {
+  }
 }
+
