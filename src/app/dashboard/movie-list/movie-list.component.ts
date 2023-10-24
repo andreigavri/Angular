@@ -14,8 +14,17 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieService.getMovieList().subscribe((movieList:Array<any>)=>{
-      this.movieList= movieList;
+    this.movieService.getMovieList().subscribe((movieList: Array<any>) => {
+      this.movieList = movieList;
     })
+  }
+
+  onDelete(movie: any) {
+    console.log(movie);
+    this.movieService.deleteMovie(movie.id);
+  }
+
+  onEdit(movie: any) {
+    console.log(movie);
   }
 }

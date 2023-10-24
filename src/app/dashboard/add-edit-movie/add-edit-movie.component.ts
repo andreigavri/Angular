@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
+import {MovieService} from "../../services/movie.service";
 
 @Component({
   selector: 'app-add-edit-movie',
@@ -12,10 +13,27 @@ export class AddEditMovieComponent {
   director: FormControl<any> = new FormControl<any>("", [Validators.required])
   year: FormControl<any> = new FormControl<any>("", [Validators.required])
 
+  constructor(private movieService: MovieService) {
+
+  }
+
   getErrorMessage() {
     return "error found"
   }
-  onSave(){
-    console.log("Save");
+
+  onSave() {
+    let titleTxt = this.title.getRawValue()!;
+    let descriptionTxt = this.description.getRawValue()!;
+    let yearTxt = this.year.getRawValue()!;
+    let directorTxt = this.director.getRawValue()!;
+
+    let body = {
+      title: titleTxt,
+      description: descriptionTxt,
+      year: yearTxt,
+      director: directorTxt
+    };
+
+    this.movieService.createMovie(body)
   }
 }

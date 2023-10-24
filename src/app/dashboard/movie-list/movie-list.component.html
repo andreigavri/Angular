@@ -1,12 +1,12 @@
 <mat-card *ngFor="let movie of movieList" class="movie-card">
   <mat-card-content>
-    <p>Title: <span class = "span-title"> {{movie.title}}</span></p>
+    <p>Title: <span class="span-title"> {{movie.title}}</span></p>
     <p>Description: {{movie.description}}</p>
     <p>Year: {{movie.year}}</p>
     <p>Director: {{movie.director}}</p>
     <div class="div-buttons-container">
-      <button mat-raised-button color="primary">Edit</button>
-      <button mat-raised-button color="primary" >Delete</button>
+      <button mat-raised-button color="primary" (click)="onEdit(movie)">Edit</button>
+      <button mat-raised-button color="primary" (click)="onDelete(movie)">Delete</button>
     </div>
   </mat-card-content>
 </mat-card>

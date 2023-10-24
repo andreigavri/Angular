@@ -8,16 +8,20 @@ import {BehaviorSubject} from "rxjs";
 export class MovieService {
 
   private movieObservable = new BehaviorSubject<Array<any>>([]);
+
   constructor(private httpClient: HttpClient) {
     this.readMovie();
   }
 
-  getMovieList(){
+  getMovieList() {
     return this.movieObservable.asObservable();
   }
 
-  createMovie(movie: any) {
-
+  createMovie(body: any) {
+    this.httpClient.post("https://api.codebyte-software.com:2323/api/movie", body).subscribe((response: any) => {
+      console.log(response)
+      this.readMovie()
+    });
   }
 
   updateMovie(movie: any) {
@@ -25,7 +29,11 @@ export class MovieService {
   }
 
   deleteMovie(movieId: string) {
-
+    this.httpClient.delete("https://api.codebyte-software.com:2323/api/movie/" + movieId)
+      .subscribe((response: any) => {
+        console.log(response)
+        this.readMovie();
+      })
   }
 
   readMovie() {
