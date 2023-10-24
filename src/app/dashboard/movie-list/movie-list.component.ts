@@ -1,29 +1,21 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MovieService} from "../../services/movie.service";
+
 
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.css']
 })
-export class MovieListComponent {
+export class MovieListComponent implements OnInit {
   movieList: Array<any> = [];
 
-  constructor() {
-    let movie1 = {
-      title: "The Pianist",
-      description: "Best rated movie",
-      year: "2009",
-      director: "Roman Polanski"
-    };
-    this.movieList.push(movie1);
+  constructor(private movieService: MovieService) {
+  }
 
-    let movie2 = {
-      title: "The GhostRider",
-      description: "Splendid movie",
-      year: "2005",
-      director: "Mark Steven Johnson"
-    };
-    this.movieList.push(movie2);
-
+  ngOnInit(): void {
+    this.movieService.getMovieList().subscribe((movieList:Array<any>)=>{
+      this.movieList= movieList;
+    })
   }
 }
