@@ -8,6 +8,7 @@ import {MovieService} from "../../services/movie.service";
   styleUrls: ['./add-edit-movie.component.css']
 })
 export class AddEditMovieComponent {
+  id: string = "";
   title: FormControl<any> = new FormControl<any>("", [Validators.required])
   description: FormControl<any> = new FormControl<any>("", [Validators.required])
   director: FormControl<any> = new FormControl<any>("", [Validators.required])
@@ -28,12 +29,19 @@ export class AddEditMovieComponent {
     let directorTxt = this.director.getRawValue()!;
 
     let body = {
+      id: this.id,
       title: titleTxt,
       description: descriptionTxt,
       year: yearTxt,
       director: directorTxt
     };
 
-    this.movieService.createMovie(body)
+    if (this.id == "") {
+      console.log("Create Movie")
+      this.movieService.createMovie(body);
+    } else {
+      console.log("Update Movie")
+      this.movieService.updateMovie(body);
+    }
   }
 }

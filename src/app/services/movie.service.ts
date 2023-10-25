@@ -24,8 +24,11 @@ export class MovieService {
     });
   }
 
-  updateMovie(movie: any) {
-
+  updateMovie(body: any) {
+    this.httpClient.patch("https://api.codebyte-software.com:2323/api/movie", body).subscribe((response: any) => {
+      console.log(response);
+      this.readMovie();
+    });
   }
 
   deleteMovie(movieId: string) {
