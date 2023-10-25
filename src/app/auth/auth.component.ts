@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-auth',
@@ -16,7 +17,7 @@ export class AuthComponent {
   hide = true;
   authType = "login"
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) {
 
   }
 
@@ -43,6 +44,8 @@ export class AuthComponent {
     this.authService.login(emailTxt, passwordTxt).subscribe((response: any) => {
       console.log(response);
       alert("Success")
+      this.userService.setUser(response.data);
+
       //navigare catre pagina de dashboard
       this.router.navigate(["/", "dashboard"]);
       this.router.navigateByUrl("/dashboard");

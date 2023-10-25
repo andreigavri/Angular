@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MovieService} from "../../services/movie.service";
 
 
@@ -9,6 +9,7 @@ import {MovieService} from "../../services/movie.service";
 })
 export class MovieListComponent implements OnInit {
   movieList: Array<any> = [];
+  @Output() editEvent:EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private movieService: MovieService) {
   }
@@ -26,5 +27,7 @@ export class MovieListComponent implements OnInit {
 
   onEdit(movie: any) {
     console.log(movie);
+    console.log("Selected Movie leaves from movie-list");
+    this.editEvent.emit(movie);
   }
 }

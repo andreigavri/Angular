@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {MovieService} from "../../services/movie.service";
 
@@ -7,7 +7,10 @@ import {MovieService} from "../../services/movie.service";
   templateUrl: './add-edit-movie.component.html',
   styleUrls: ['./add-edit-movie.component.css']
 })
-export class AddEditMovieComponent {
+export class AddEditMovieComponent implements OnChanges {
+  @Input() movie: any = null;
+
+
   id: string = "";
   title: FormControl<any> = new FormControl<any>("", [Validators.required])
   description: FormControl<any> = new FormControl<any>("", [Validators.required])
@@ -16,6 +19,18 @@ export class AddEditMovieComponent {
 
   constructor(private movieService: MovieService) {
 
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.movie != null) {
+      console.log("We are in the add-edit-movie component and we have received :");
+      console.log(this.movie);
+
+      this.id = this.movie.id;
+      this.title = new FormControl<any>(this.movie.title, [Validators.required]);
+      this.description = new FormControl<any>(this.movie.description, [Validators.required]);
+      this.director = new FormControl<any>(this.movie.director, [Validators.required]);
+      this.year = new FormControl<any>(this.movie.year, [Validators.required]);
+    }
   }
 
   getErrorMessage() {

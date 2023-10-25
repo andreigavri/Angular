@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  floors:Array<number>=[1,2,3,4,5,6];
+  selectedMovie: any = null;
+
+  constructor() {
+  }
+
+  receiveMovieFromMovieList(movie: any) {
+    console.log("In the dashboard component we received :");
+    console.log(movie);
+    this.selectedMovie = movie;
+  }
 }
 

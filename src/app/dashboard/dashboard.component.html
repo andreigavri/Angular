@@ -1,4 +1,5 @@
-<app-add-edit-movie>
+<app-add-edit-movie [movie]="selectedMovie">
 </app-add-edit-movie>
-<app-movie-list>
+<app-movie-list (editEvent)="receiveMovieFromMovieList($event)">
+
 </app-movie-list>
